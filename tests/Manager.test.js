@@ -33,13 +33,16 @@ describe("Manager", () => {
     
     it("should throw an error if the name does not contain any letters or contains any characters other than letters, spaces, or dashes", () => {
       const name = "Bob-1989";
+      const name2 = "  ";
       const id = 11;
       const email = "bob@bob.com";
       const officeNum = 101;
       const cb = () => new Manager(name, id, email, officeNum);
+      const cb2 = () => new Manager(name2, id, email, officeNum);
       const err = new Error('Employee name must contain at least one letter and only contain letters,single spaces, or dashes');
 
       expect(cb).toThrowError(err);
+      expect(cb2).toThrowError(err);
     });
 
     it("should throw an error if the email does not contain an @ symbol", () => {
