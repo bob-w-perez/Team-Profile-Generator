@@ -22,7 +22,7 @@ describe("Manager", () => {
 
     // Exception tests
     it("should throw an error if the office number parameter is not included", () => {
-      const name = "Bob-1989";
+      const name = "Bob";
       const email = "bob@bob.com";
       const id = 13;
       const cb = () => new Manager(name, email, id);
