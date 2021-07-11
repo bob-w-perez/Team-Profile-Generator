@@ -1,0 +1,66 @@
+
+body {
+  background-color: dodgerblue ;
+}
+
+header {
+  width: 100%;
+  background-color: blue;
+  color: blanchedalmond;
+}
+
+h1 {
+  font-size: 3em;
+  text-align: center;
+  padding: 0.75em;
+}
+
+main {
+  background-color:mistyrose;
+  display: flex;
+  flex-flow: row wrap;
+  min-height: 70vh;
+}
+
+.card {
+  margin: 1em;
+  height: fit-content;
+  box-shadow: 0.2em 0.2em 0.3em 0em darkblue;
+}
+
+.card-header {
+  background-color: darkslateblue;
+  color: blanchedalmond;
+  padding: 0.5em;
+}
+
+.card-body {
+  background-color: lightgray;
+  padding: 2em 0.5em;
+}
+
+.card-body ul {
+  background-color: floralwhite;
+}
+
+.card-body ul li {
+  border: 2px solid lightslategray;
+  border-bottom: 0;
+  padding: 0.4em;
+}
+
+.card-body ul li:last-child {
+  border: 2px solid lightslategray;
+  padding: 0.4em;
+}
+
+footer {
+  background-color: darkslateblue;
+  color: blanchedalmond;
+  min-height: 10vh;
+}
+
+#today-date {
+  padding: 1em;
+  font-size: 2rem;
+}
