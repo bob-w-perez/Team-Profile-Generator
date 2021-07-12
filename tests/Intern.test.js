@@ -26,7 +26,7 @@ describe("Intern", () => {
       const email = "bob@bob.com";
       const id = 15;
       const cb = () => new Intern(name, id, email);
-      const err = new Error("Must include school for Intern");
+      const err = new Error("Must include a school for Intern");
 
       expect(cb).toThrowError(err);
     });
