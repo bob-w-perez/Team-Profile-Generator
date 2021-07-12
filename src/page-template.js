@@ -1,5 +1,5 @@
 
-
+// MAKE LINK FOR EMAIL
 function createManagerCard(personData){
   return `
   <div class="card">
@@ -11,13 +11,14 @@ function createManagerCard(personData){
         <ul>
           <li>ID: ${personData.id}</li>
           <li>Email: ${personData.email}</li>
-          <li>Office number: ${}</li>
+          <li>Office number: ${personData.officeNum}</li>
         </ul>
       </div>
     </div>
 `
 }
 
+// MAKE LINK FOR GITHUB and EMAIL
 function createEngineerCard(personData){
   return `
   <div class="card">
@@ -29,7 +30,7 @@ function createEngineerCard(personData){
         <ul>
           <li>ID: ${personData.id}</li>
           <li>Email: ${personData.email}</li>
-          <li>Office number: ${}</li>
+          <li>GitHub: ${personData.github}</li>
         </ul>
       </div>
     </div>
@@ -47,15 +48,26 @@ function createInternCard(personData){
         <ul>
           <li>ID: ${personData.id}</li>
           <li>Email: ${personData.email}</li>
-          <li>Office number: ${}</li>
+          <li>School: ${personData.school}</li>
         </ul>
       </div>
     </div>
 `
 }
 
+// MAKE LINK FOR EMAIL
 function addCardsToPage(teamData){
+  const managers = teamData.managers;
+  const engineers = teamData.engineers;
+  const interns = teamData.interns;
 
+  let cardHTML = '';
+
+  managers.forEach(manager => cardHTML += createManagerCard(manager));
+  engineers.forEach(engineer => cardHTML += createEngineerCard(engineer));
+  interns.forEach(intern => cardHTML += createInternCard(intern));
+
+  return cardHTML;
 
 }
 
@@ -79,50 +91,7 @@ function renderHTML(teamData) {
   </header>
   
   <main>
-    <!-- Example Card -->
-    <div class="card">
-      <div class="card-header">
-        <h2>Bob</h2>
-        <h3>Manager</h3>
-      </div>
-      <div class="card-body">
-        <ul>
-          <li>ID: 1</li>
-          <li>Email: bob@bob.com</li>
-          <li>Office number: 101</li>
-        </ul>
-      </div>
-    </div>
-
-        <!-- Example Card -->
-    <div class="card">
-      <div class="card-header">
-        <h2>Tom</h2>
-        <h3>Engineer</h3>
-      </div>
-      <div class="card-body">
-        <ul>
-          <li>ID: 2</li>
-          <li>Email: tom@bob.com</li>
-          <li>GitHub: </li>
-        </ul>
-      </div>
-    </div>
-
-        <!-- Example Card -->
-    <div class="card">
-      <div class="card-header">
-        <h2>Ralph</h2>
-        <h3>Intern</h3>
-      </div>
-      <div class="card-body">
-        <ul>
-          <li>ID: 3</li>
-          <li>Email: raplh@bob.com</li>
-          <li>School: Mississippi</li>
-        </ul>
-      </div>
-    </div>
+    ${addCardsToPage(teamData)}
 
   </main>
   <footer>
@@ -131,10 +100,11 @@ function renderHTML(teamData) {
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="./script.js"></script>
+  <script src="./js/script.js"></script>
 </body>
 </html>
   `
 }
+
 
 module.exports = renderHTML;

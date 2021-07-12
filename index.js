@@ -2,9 +2,10 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const chalk = require("chalk");
-const Manager = require('./lib/Manager')
-const Engineer = require('./lib/Engineer')
-const Intern = require('./lib/Intern')
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const renderHTML = require('./src/page-template');
 
 const teamData = {
   teamName: '',
@@ -40,6 +41,7 @@ const questionsManager = [
     }
   },
   {
+    // ADD CHECK FOR UNIQUE ID
     type: 'input',
     message: chalk`{yellow What is the team manager's ID?}`,
     name: 'managerID',
@@ -97,6 +99,7 @@ const questionsEngineer = [
     }
   },
   {
+        // ADD CHECK FOR UNIQUE ID
     type: 'input',
     message: chalk`{red.bold What is your engineer's ID?}`,
     name: 'engineerID',
@@ -155,6 +158,7 @@ const questionsIntern = [
     }
   },
   {
+        // ADD CHECK FOR UNIQUE ID
     type: 'input',
     message: chalk`{blue.bold What is your intern's ID?}`,
     name: 'internID',
@@ -199,6 +203,12 @@ const questionsIntern = [
   }
 ]
 
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, (err) =>{
+      err ? console.error(err) :  console.log(chalk.green.bold(`\n======================================\n\n Generating ${teamData.teamName}'s profile page...\n\n======================================\n`));;     
+  });
+}
+
 function init() {
   inquirer
     .prompt(questionsManager)
@@ -214,9 +224,8 @@ function init() {
       } else if (answers.teamMember == chalk`{blue.bold Intern}`) {
         internQuestions();
       } else {
-        console.log(chalk.green.bold(`\n======================================\n\n Generating ${teamData.teamName}'s profile page...\n\n======================================\n`));
-        // ADD fs function to write this
-        console.log(teamData);
+        let fileName = teamData.teamName // ADD FUNCTION TO REPLACE SPACE WITH DASH
+        writeToFile(`./dist/${fileName}.html`, renderHTML(teamData));
       }
     })
 }
@@ -236,9 +245,8 @@ function engineerQuestions() {
       } else if (answers.teamMember == chalk`{blue.bold Intern}`) {
         internQuestions();
       } else {
-        console.log(chalk.green.bold(`\n======================================\n\n Generating ${teamData.teamName}'s profile page...\n\n======================================\n`));
-        // ADD fs function to write this
-        console.log(teamData);
+        let fileName = teamData.teamName // ADD FUNCTION TO REPLACE SPACE WITH DASH
+        writeToFile(`./dist/${fileName}.html`, renderHTML(teamData));
       }
     })
 
@@ -258,9 +266,8 @@ function internQuestions() {
     } else if (answers.teamMember == chalk`{blue.bold Intern}`) {
       internQuestions();
     } else {
-      console.log(chalk.green.bold(`\n======================================\n\n Generating ${teamData.teamName}'s profile page...\n\n======================================\n`));
-      // ADD fs function to write this
-      console.log(teamData);
+      let fileName = teamData.teamName // ADD FUNCTION TO REPLACE SPACE WITH DASH
+      writeToFile(`./dist/${fileName}.html`, renderHTML(teamData));
     }
   })
 }
