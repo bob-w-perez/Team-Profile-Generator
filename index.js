@@ -7,12 +7,26 @@ const Engineer = require('./lib/Engineer')
 const Intern = require('./lib/Intern')
 
 const teamData = {
+  teamName: '',
   managers: [],
   engineers: [],
   interns: []
 };
 
 const questionsManager = [
+  {
+    type: 'input',
+    message: chalk`{green What do you want to call your team?}`,
+    name: 'teamName',
+    default: 'My Team',
+    validate: (input) => {
+      if (!/[a-z0-9]/i.test(input)) {
+          return 'Team name must include at least one alphanumeric';
+      } else {
+          return true;
+      }
+    }
+  },
   {
     type: 'input',
     message: chalk`{yellow What is the team manager's name?}`,
@@ -190,6 +204,8 @@ function init() {
     .prompt(questionsManager)
     .then((answers) => {
 
+      teamData.teamName = answers.teamName;
+
       let newManager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNum);
       teamData.managers.push(newManager);
 
@@ -198,7 +214,8 @@ function init() {
       } else if (answers.teamMember == chalk`{blue.bold Intern}`) {
         internQuestions();
       } else {
-        console.log(chalk.green("DONE"));
+        console.log(chalk.green.bold(`\n======================================\n\n Generating ${teamData.teamName}'s profile page...\n\n======================================\n`));
+        // ADD fs function to write this
         console.log(teamData);
       }
     })
@@ -219,7 +236,8 @@ function engineerQuestions() {
       } else if (answers.teamMember == chalk`{blue.bold Intern}`) {
         internQuestions();
       } else {
-        console.log(chalk.green("DONE"));
+        console.log(chalk.green.bold(`\n======================================\n\n Generating ${teamData.teamName}'s profile page...\n\n======================================\n`));
+        // ADD fs function to write this
         console.log(teamData);
       }
     })
@@ -240,7 +258,8 @@ function internQuestions() {
     } else if (answers.teamMember == chalk`{blue.bold Intern}`) {
       internQuestions();
     } else {
-      console.log(chalk.green("DONE"));
+      console.log(chalk.green.bold(`\n======================================\n\n Generating ${teamData.teamName}'s profile page...\n\n======================================\n`));
+      // ADD fs function to write this
       console.log(teamData);
     }
   })
