@@ -1,5 +1,7 @@
 const Employee = require("../lib/Employee");
 
+// All the class methods (getName(), etc.) make a console log in addition to returning their value,
+//so this code stops them from displaying while running tests
 beforeAll(() => {
   jest.spyOn(console, 'log').mockImplementation(() => {});
 });

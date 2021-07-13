@@ -53,7 +53,9 @@ function createInternCard(personData){
 `
 }
 
-// MAKE LINK FOR EMAIL
+// teamData is an object with three arrays within, one for each employee class
+// using the data this way allows an easy solution to have the output HTML cards
+// to be grouped by employee class
 function addCardsToPage(teamData){
   const managers = teamData.managers;
   const engineers = teamData.engineers;
@@ -69,10 +71,14 @@ function addCardsToPage(teamData){
 
 }
 
+// this is needed to make the individual ticker elements (one for each employee) that will scroll 
+// across the bottom of the screen
 function makeTickerEl(name) {
   return `<div class="ticker__item">${name}</div>`
 }
 
+// recycled the idList used to validate unique employee IDs to get each employee name
+// as accessing the names here is much simpler than getting them from the teamData object
 function renderTicker(idList) {
   let teamNames = Object.values(idList);
   let tickerHTML = '';
@@ -81,6 +87,7 @@ function renderTicker(idList) {
   }
   return tickerHTML;
 }
+
 
 function renderHTML(teamData, idList) {
   return `
