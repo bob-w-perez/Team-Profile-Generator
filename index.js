@@ -14,6 +14,8 @@ const teamData = {
   interns: []
 };
 
+const idList = {};
+
 const questionsManager = [
   {
     type: 'input',
@@ -41,13 +43,15 @@ const questionsManager = [
     }
   },
   {
-    // ADD CHECK FOR UNIQUE ID
+    
     type: 'input',
     message: chalk`{yellow What is the team manager's ID?}`,
     name: 'managerID',
     validate: (input) => {
       if (!/[0-9]/i.test(input)) {
           return 'Employee ID must contain at least one number';
+      } else if (Object.keys(idList).includes(input)) {
+          return `Employee ID's must be unique. ${input} is ${idList[input]}'s ID`;
       } else {
           return true;
       }
@@ -58,7 +62,7 @@ const questionsManager = [
     message: chalk`{yellow What is the team manager's email?}`,
     name: 'managerEmail',
     validate: (input) => {
-      if (!/@/i.test(input)) {
+      if (!/\S+@\S+\.\S+/i.test(input)) {
           return 'Please enter a valid email address';
       } else {
           return true;
@@ -99,13 +103,14 @@ const questionsEngineer = [
     }
   },
   {
-        // ADD CHECK FOR UNIQUE ID
     type: 'input',
     message: chalk`{red.bold What is your engineer's ID?}`,
     name: 'engineerID',
     validate: (input) => {
       if (!/[0-9]/i.test(input)) {
           return 'Employee ID must contain at least one number';
+      } else if (Object.keys(idList).includes(input)) {
+          return `Employee ID's must be unique. ${input} is ${idList[input]}'s ID`;
       } else {
           return true;
       }
@@ -116,8 +121,8 @@ const questionsEngineer = [
     message: chalk`{red.bold What is you engineer's email?}`,
     name: 'engineerEmail',
     validate: (input) => {
-      if (!/@/i.test(input)) {
-          return 'Please enter a valid email address';
+      if (!/\S+@\S+\.\S+/i.test(input)) {
+        return 'Please enter a valid email address';
       } else {
           return true;
       }
@@ -158,13 +163,14 @@ const questionsIntern = [
     }
   },
   {
-        // ADD CHECK FOR UNIQUE ID
     type: 'input',
     message: chalk`{blue.bold What is your intern's ID?}`,
     name: 'internID',
     validate: (input) => {
       if (!/[0-9]/i.test(input)) {
           return 'Employee ID must contain at least one number';
+      } else if (Object.keys(idList).includes(input)) {
+          return `Employee ID's must be unique. ${input} is ${idList[input]}'s ID`;
       } else {
           return true;
       }
@@ -175,8 +181,8 @@ const questionsIntern = [
     message: chalk`{blue.bold What is you intern's email?}`,
     name: 'internEmail',
     validate: (input) => {
-      if (!/@/i.test(input)) {
-          return 'Please enter a valid email address';
+      if (!/\S+@\S+\.\S+/i.test(input)) {
+        return 'Please enter a valid email address';
       } else {
           return true;
       }
@@ -205,7 +211,7 @@ const questionsIntern = [
 
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (err) =>{
-      err ? console.error(err) :  console.log(chalk.green.bold(`\n======================================\n\n Generating ${teamData.teamName}'s profile page...\n\n======================================\n`));;     
+      err ? console.error(err) :  console.log(chalk.green.bold(`\n==========================================================================\n\n Generating ${teamData.teamName}'s profile page...\n...DONE! Your team page can be found in ${fileName}\n==========================================================================\n\n`));;     
   });
 }
 
@@ -215,6 +221,7 @@ function init() {
     .then((answers) => {
 
       teamData.teamName = answers.teamName;
+      idList[answers.managerID] = answers.managerName;
 
       let newManager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNum);
       teamData.managers.push(newManager);
@@ -224,8 +231,8 @@ function init() {
       } else if (answers.teamMember == chalk`{blue.bold Intern}`) {
         internQuestions();
       } else {
-        let fileName = teamData.teamName // ADD FUNCTION TO REPLACE SPACE WITH DASH
-        writeToFile(`./dist/${fileName}.html`, renderHTML(teamData));
+        let fileName = teamData.teamName.replace(/ /g, '-').replace(/'/g, '');
+        writeToFile(`./dist/${fileName}.html`, renderHTML(teamData, idList));
       }
     })
 }
@@ -237,6 +244,8 @@ function engineerQuestions() {
     .prompt(questionsEngineer)
     .then((answers) => {
 
+      idList[answers.engineerID] = answers.engineerName;
+
       let newEngineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGithub);
       teamData.engineers.push(newEngineer);
 
@@ -245,8 +254,8 @@ function engineerQuestions() {
       } else if (answers.teamMember == chalk`{blue.bold Intern}`) {
         internQuestions();
       } else {
-        let fileName = teamData.teamName // ADD FUNCTION TO REPLACE SPACE WITH DASH
-        writeToFile(`./dist/${fileName}.html`, renderHTML(teamData));
+        let fileName = teamData.teamName.replace(/ /g, '-').replace(/'/g, '');
+        writeToFile(`./dist/${fileName}.html`, renderHTML(teamData, idList));
       }
     })
 
@@ -257,6 +266,7 @@ function internQuestions() {
   .prompt(questionsIntern)
   .then((answers) => {
 
+    idList[answers.internID] = answers.internName;
 
     let newIntern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool);
     teamData.interns.push(newIntern);
@@ -266,8 +276,8 @@ function internQuestions() {
     } else if (answers.teamMember == chalk`{blue.bold Intern}`) {
       internQuestions();
     } else {
-      let fileName = teamData.teamName // ADD FUNCTION TO REPLACE SPACE WITH DASH
-      writeToFile(`./dist/${fileName}.html`, renderHTML(teamData));
+      let fileName = teamData.teamName.replace(/ /g, '-').replace(/'/g, '');
+      writeToFile(`./dist/${fileName}.html`, renderHTML(teamData, idList));
     }
   })
 }
