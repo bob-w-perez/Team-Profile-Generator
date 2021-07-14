@@ -11,11 +11,9 @@ This is a command line program that presents the user with an interactive series
 ![Demo gif](./dist/assets/images/demo.gif)
 
 
-The code and all relevant files can be found at [https://github.com/bob-w-perez/Team-Profile-Generator](https://github.com/bob-w-perez/Team-Profile-Generator). 
+The code and all relevant files can be found at [https://github.com/perez-rob/Team-Profile-Generator](https://github.com/perez-rob/Team-Profile-Generator). 
 
-$$$$$$$$$$$$$$$$$$$
-A video demonstration of the project can be downloaded in MP4 format here: [https://github.com/bob-w-perez/README-Generator/blob/main/demo-video.mp4](https://github.com/bob-w-perez/README-Generator/blob/main/demo-video.mp4)
-$$$$$$$$$$$$$$$$$$$$$
+A video demonstration of the project can be downloaded in MP4 format here: [https://github.com/perez-rob/README-Generator/blob/main/demo.mp4](https://github.com/perez-robREADME-Generator/blob/main/demo.mp4)
 
 ## Table of Contents
 
@@ -37,7 +35,7 @@ $$$$$$$$$$$$$$$$$$$$$
 
 ## Installation
 
-1) Navigate to [https://github.com/bob-w-perez/Team-Profile-Generator](https://github.com/bob-w-perez/Team-Profile-Generator)
+1) Navigate to [https://github.com/perez-rob/Team-Profile-Generator](https://github.com/perez-rob/Team-Profile-Generator)
 
 2) Clone the repository to your local machine
 
@@ -103,7 +101,7 @@ npm test
 
 ## Questions
 
-If you have any questions about the repo, open an issue or contact me directly at bob.w.perez@gmail.com. You can find more of my work at [github/bob-w-perez](https://github.com/bob-w-perez).  
+If you have any questions about the repo, open an issue or contact me directly at bob.w.perez@gmail.com. You can find more of my work at [github/perez-rob](https://github.com/perez-rob).  
 
 
 ## License
