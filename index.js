@@ -30,14 +30,7 @@ const questionsManager = [
     type: 'input',
     message: chalk`{green What do you want to call your team?}`,
     name: 'teamName',
-    default: 'My Team',
-    validate: (input) => {
-      if (!/^([A-Z][a-z]+([ ]?[a-z]?['-]?[A-Z][a-z]+)*)$/.test(input)) {
-          return 'Team name must contain at least one upper-case and one lower-case letter and only contain letters, single spaces, or dashes';
-      } else {
-          return true;
-      }
-    }
+    default: 'My Team'
   },
   {
     // the rest of the manager questions are colored yellow to aide in visual grouping and aesthetics

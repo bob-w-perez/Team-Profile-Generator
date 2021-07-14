@@ -41,7 +41,7 @@ describe("Engineer", () => {
       const github = "bob-perez";
       const cb = () => new Engineer(name, id, email, github);
       const cb2 = () => new Engineer(name2, id, email, github)
-      const err = new Error('Employee name must contain at least one letter and only contain letters,single spaces, or dashes');
+      const err = new Error('Employee name must contain at least one upper-case and one lower-case letter and only contain letters, single spaces, or dashes');
 
       expect(cb).toThrowError(err);
       expect(cb2).toThrowError(err);
@@ -53,7 +53,7 @@ describe("Engineer", () => {
       const email = "bob.com";
       const github = "bob-perez";
       const cb = () => new Engineer(name, id, email, github);
-      const err = new Error('Email must contain an @');
+      const err = new Error('Email must be in a valid email format: {something}@{something}.{something}');
 
       expect(cb).toThrowError(err);
     });

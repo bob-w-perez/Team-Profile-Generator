@@ -41,7 +41,7 @@ describe("Manager", () => {
       const officeNum = 101;
       const cb = () => new Manager(name, id, email, officeNum);
       const cb2 = () => new Manager(name2, id, email, officeNum);
-      const err = new Error('Employee name must contain at least one letter and only contain letters,single spaces, or dashes');
+      const err = new Error('Employee name must contain at least one upper-case and one lower-case letter and only contain letters, single spaces, or dashes');
 
       expect(cb).toThrowError(err);
       expect(cb2).toThrowError(err);
@@ -53,7 +53,7 @@ describe("Manager", () => {
       const email = "bob.com";
       const officeNum = 101;
       const cb = () => new Manager(name, id, email, officeNum);
-      const err = new Error('Email must contain an @');
+      const err = new Error('Email must be in a valid email format: {something}@{something}.{something}');
 
       expect(cb).toThrowError(err);
     });

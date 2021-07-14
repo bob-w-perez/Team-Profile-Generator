@@ -101,10 +101,10 @@ function renderHTML(teamData, idList) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@400;600&family=Otomanopee+One&family=Poppins&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./css/reset.css">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
   <title>${teamData.teamName}</title>
-  <link rel="icon" href="./images/team-favicon.png">
+  <link rel="icon" href="./assets/images/team-favicon.png">
 </head>
 <body>
   <header>
@@ -130,7 +130,7 @@ function renderHTML(teamData, idList) {
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="./js/script.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 </html>
   `
