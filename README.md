@@ -13,7 +13,7 @@ This is a command line program that presents the user with an interactive series
 
 The code and all relevant files can be found at [https://github.com/perez-rob/Team-Profile-Generator](https://github.com/perez-rob/Team-Profile-Generator). 
 
-A video demonstration of the project can be downloaded in MP4 format here: [https://github.com/perez-rob/README-Generator/blob/main/demo.mp4](https://github.com/perez-robREADME-Generator/blob/main/demo.mp4)
+A video demonstration of the project can be downloaded in MP4 format here: [https://github.com/perez-rob/Team-Profile-Generator/blob/main/demo.mp4](https://github.com/perez-rob/Team-Profile-Generator/blob/main/demo.mp4)
 
 ## Table of Contents
 
