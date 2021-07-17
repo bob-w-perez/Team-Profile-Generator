@@ -82,8 +82,8 @@ npm start
 
 Solo project for GATech Coding Bootcamp
 by Rob Perez
-- [Portfolio Page]https://bob-w-perez.github.io/Portfolio-Page/)
-- bob.w.perez@gmail.com
+- [Portfolio Page](https://www.robperez.net)
+- rob@robperez.net
 - 404.317.5336
 
 The scrolling ticker at the bottom was adapted from Lewis Carey's example:
